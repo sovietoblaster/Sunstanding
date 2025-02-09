@@ -50,7 +50,10 @@ jobs:
             echo "PUSH=false" >> $GITHUB_ENV
           else
             echo "PREV_COMMIT_NAME=$(git log --pretty=format:"%s" -1)" >> $GITHUB_ENV
-            git commit -m "<auto> publish after $PREV_COMMIT_NAME" -a
+            echo "1: $(git log --pretty=format:"%s" -1)"
+            echo "2: $PREV_COMMIT_NAME"
+            echo "3: $(PREV_COMMIT_NAME)"
+            git commit -m "<auto> publish after $(PREV_COMMIT_NAME)" -a
             echo "PUSH=true" >> $GITHUB_ENV
           fi
         shell: bash
