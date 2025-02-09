@@ -46,16 +46,16 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git add pdfs\*
-          if [-z "$(git status --porcelain)"]; then
-            echo "::set-output name=push::false"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "PUSH=false" >> $GITHUB_ENV
           else
-            PrevCommitName=$(git log --pretty=format:"%s" -1)
-            git commit -m "<auto> publish after $(PrevCommitName)" -a
-            echo "::set-output name=push::true"
+            echo "PREV_COMMIT_NAME=$(git log --pretty=format:"%s" -1)" >> $GITHUB_ENV
+            git commit -m "<auto> publish after $PREV_COMMIT_NAME" -a
+            echo "PUSH=true" >> $GITHUB_ENV
           fi
         shell: bash
       - name: Push changes
-        if: steps.commit.outputs.push == 'true'
+        if: env.PUSH == 'true'
         uses: ad-m/github-push-action@master
         with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
