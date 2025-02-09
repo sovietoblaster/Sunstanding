@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<title>1_02</title>
+		<style>
+			/* PDF Specific */
+
+@media print {
+  body {
+    min-width: initial;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* General */
+
+.octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+.anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
+}
+
+.anchor:focus {
+  outline: none;
+}
+
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+  text-decoration: none;
+}
+
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+h1:hover .anchor .octicon-link:before,
+h2:hover .anchor .octicon-link:before,
+h3:hover .anchor .octicon-link:before,
+h4:hover .anchor .octicon-link:before,
+h5:hover .anchor .octicon-link:before,
+h6:hover .anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill-rule='evenodd' d='M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-print-color-adjust: exact;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #24292e;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 1rem auto;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+a {
+  background-color: initial;
+}
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+img {
+  border-style: none;
+}
+
+code,
+kbd,
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+hr {
+  box-sizing: initial;
+  height: 0;
+  overflow: visible;
+}
+
+input {
+  font: inherit;
+  margin: 0;
+}
+
+input {
+  overflow: visible;
+}
+
+[type='checkbox'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: 600;
+}
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+}
+
+hr:after,
+hr:before {
+  display: table;
+  content: '';
+}
+
+hr:after {
+  clear: both;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h1,
+h2 {
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h3,
+h4 {
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h5,
+h6 {
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+blockquote {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ol ol ol,
+ol ul ol,
+ul ol ol,
+ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+dd {
+  margin-left: 0;
+}
+
+code,
+pre {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-size: 12px;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+:checked + .radio-label {
+  position: relative;
+  z-index: 1;
+  border-color: #0366d6;
+}
+
+.border {
+  border: 1px solid #e1e4e8 !important;
+}
+
+.border-0 {
+  border: 0 !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e1e4e8 !important;
+}
+
+.rounded-1 {
+  border-radius: 3px !important;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.bg-gray-light {
+  background-color: #fafbfc !important;
+}
+
+.text-gray-light {
+  color: #6a737d !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.my-2 {
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.pl-1 {
+  padding-left: 4px !important;
+}
+
+.pl-2 {
+  padding-left: 8px !important;
+}
+
+.py-2 {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.pl-3,
+.px-3 {
+  padding-left: 16px !important;
+}
+
+.px-3 {
+  padding-right: 16px !important;
+}
+
+.pl-4 {
+  padding-left: 24px !important;
+}
+
+.pl-5 {
+  padding-left: 32px !important;
+}
+
+.pl-6 {
+  padding-left: 40px !important;
+}
+
+.f6 {
+  font-size: 12px !important;
+}
+
+.lh-condensed {
+  line-height: 1.25 !important;
+}
+
+.text-bold {
+  font-weight: 600 !important;
+}
+
+.pl-c {
+  color: #6a737d;
+}
+
+.pl-c1,
+.pl-s .pl-v {
+  color: #005cc5;
+}
+
+.pl-e,
+.pl-en {
+  color: #6f42c1;
+}
+
+.pl-s .pl-s1,
+.pl-smi {
+  color: #24292e;
+}
+
+.pl-ent {
+  color: #22863a;
+}
+
+.pl-k {
+  color: #d73a49;
+}
+
+.pl-pds,
+.pl-s,
+.pl-s .pl-pse .pl-s1,
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sra,
+.pl-sr .pl-sre {
+  color: #032f62;
+}
+
+.pl-smw,
+.pl-v {
+  color: #e36209;
+}
+
+.pl-bu {
+  color: #b31d28;
+}
+
+.pl-ii {
+  color: #fafbfc;
+  background-color: #b31d28;
+}
+
+.pl-c2 {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+
+.pl-c2:before {
+  content: '^M';
+}
+
+.pl-sr .pl-cce {
+  font-weight: 700;
+  color: #22863a;
+}
+
+.pl-ml {
+  color: #735c0f;
+}
+
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+  font-weight: 700;
+  color: #005cc5;
+}
+
+.pl-mi {
+  font-style: italic;
+  color: #24292e;
+}
+
+.pl-mb {
+  font-weight: 700;
+  color: #24292e;
+}
+
+.pl-md {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+.pl-mi1 {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.pl-mc {
+  color: #e36209;
+  background-color: #ffebda;
+}
+
+.pl-mi2 {
+  color: #f6f8fa;
+  background-color: #005cc5;
+}
+
+.pl-mdr {
+  font-weight: 700;
+  color: #6f42c1;
+}
+
+.pl-ba {
+  color: #586069;
+}
+
+.pl-sg {
+  color: #959da5;
+}
+
+.pl-corl {
+  text-decoration: underline;
+  color: #032f62;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.my-2 {
+  margin-bottom: 8px !important;
+}
+
+.my-2 {
+  margin-top: 8px !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.pl-1 {
+  padding-left: 4px !important;
+}
+
+.pl-2 {
+  padding-left: 8px !important;
+}
+
+.py-2 {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.pl-3 {
+  padding-left: 16px !important;
+}
+
+.pl-4 {
+  padding-left: 24px !important;
+}
+
+.pl-5 {
+  padding-left: 32px !important;
+}
+
+.pl-6 {
+  padding-left: 40px !important;
+}
+
+.pl-7 {
+  padding-left: 48px !important;
+}
+
+.pl-8 {
+  padding-left: 64px !important;
+}
+
+.pl-9 {
+  padding-left: 80px !important;
+}
+
+.pl-10 {
+  padding-left: 96px !important;
+}
+
+.pl-11 {
+  padding-left: 112px !important;
+}
+
+.pl-12 {
+  padding-left: 128px !important;
+}
+
+hr {
+  border-bottom-color: #eee;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+
+body:after,
+body:before {
+  display: table;
+  content: '';
+}
+
+body:after {
+  clear: both;
+}
+
+body > :first-child {
+  margin-top: 0 !important;
+}
+
+body > :last-child {
+  margin-bottom: 0 !important;
+}
+
+a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+blockquote,
+details,
+dl,
+ol,
+p,
+pre,
+table,
+ul {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+
+blockquote > :first-child {
+  margin-top: 0;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h1,
+h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: 0.875em;
+}
+
+h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+ol,
+ul {
+  padding-left: 2em;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li {
+  word-wrap: break-all;
+}
+
+li > p {
+  margin-top: 16px;
+}
+
+li + li {
+  margin-top: 0.25em;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+
+table th {
+  font-weight: 600;
+}
+
+table td,
+table th {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+img {
+  max-width: 80%;
+  box-sizing: initial;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+pre {
+  word-wrap: normal;
+}
+
+pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  -webkit-print-color-adjust: exact;
+  background: #f8f8f8;
+}
+
+.hljs pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.hljs pre,
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  -webkit-print-color-adjust: exact;
+
+  border-radius: 3px;
+}
+
+pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: initial;
+  border: 0;
+}
+
+.commit-tease-sha {
+  display: inline-block;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-size: 90%;
+  color: #444d56;
+}
+
+.full-commit .btn-outline:not(:disabled):hover {
+  color: #005cc5;
+  border-color: #005cc5;
+}
+
+.blob-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.blob-wrapper-embedded {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.blob-num {
+  width: 1%;
+  min-width: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(27, 31, 35, 0.3);
+  text-align: right;
+  white-space: nowrap;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.blob-num:hover {
+  color: rgba(27, 31, 35, 0.6);
+}
+
+.blob-num:before {
+  content: attr(data-line-number);
+}
+
+.blob-code {
+  position: relative;
+  padding-right: 10px;
+  padding-left: 10px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+.blob-code-inner {
+  overflow: visible;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-size: 12px;
+  color: #24292e;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+.pl-token.active,
+.pl-token:hover {
+  cursor: pointer;
+  background: #ffea7f;
+}
+
+.tab-size[data-tab-size='1'] {
+  -moz-tab-size: 1;
+  tab-size: 1;
+}
+
+.tab-size[data-tab-size='2'] {
+  -moz-tab-size: 2;
+  tab-size: 2;
+}
+
+.tab-size[data-tab-size='3'] {
+  -moz-tab-size: 3;
+  tab-size: 3;
+}
+
+.tab-size[data-tab-size='4'] {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.tab-size[data-tab-size='5'] {
+  -moz-tab-size: 5;
+  tab-size: 5;
+}
+
+.tab-size[data-tab-size='6'] {
+  -moz-tab-size: 6;
+  tab-size: 6;
+}
+
+.tab-size[data-tab-size='7'] {
+  -moz-tab-size: 7;
+  tab-size: 7;
+}
+
+.tab-size[data-tab-size='8'] {
+  -moz-tab-size: 8;
+  tab-size: 8;
+}
+
+.tab-size[data-tab-size='9'] {
+  -moz-tab-size: 9;
+  tab-size: 9;
+}
+
+.tab-size[data-tab-size='10'] {
+  -moz-tab-size: 10;
+  tab-size: 10;
+}
+
+.tab-size[data-tab-size='11'] {
+  -moz-tab-size: 11;
+  tab-size: 11;
+}
+
+.tab-size[data-tab-size='12'] {
+  -moz-tab-size: 12;
+  tab-size: 12;
+}
+
+.task-list-item {
+  list-style-type: none;
+}
+
+.task-list-item + .task-list-item {
+  margin-top: 3px;
+}
+
+.task-list-item input {
+  margin: 0 0.2em 0.25em -1.6em;
+  vertical-align: middle;
+}
+@font-face {
+    font-family: "Alegreya Sans", sans-serif;
+    font-style: normal;
+    /* src: url("../fonts/RobotoCondensed-Regular.ttf"); */
+    src: url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+}
+
+body {
+    font-family: "Alegreya Sans", sans-serif;
+}
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+  
+  .hljs-comment,
+  .hljs-quote {
+    color: #998;
+    font-style: italic;
+  }
+  
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .hljs-number,
+  .hljs-literal,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+    color: #008080;
+  }
+  
+  .hljs-string,
+  .hljs-doctag {
+    color: #d14;
+  }
+  
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+    color: #900;
+    font-weight: bold;
+  }
+  
+  .hljs-subst {
+    font-weight: normal;
+  }
+  
+  .hljs-type,
+  .hljs-class .hljs-title {
+    color: #458;
+    font-weight: bold;
+  }
+  
+  .hljs-tag,
+  .hljs-name,
+  .hljs-attribute {
+    color: #000080;
+    font-weight: normal;
+  }
+  
+  .hljs-regexp,
+  .hljs-link {
+    color: #009926;
+  }
+  
+  .hljs-symbol,
+  .hljs-bullet {
+    color: #990073;
+  }
+  
+  .hljs-built_in,
+  .hljs-builtin-name {
+    color: #0086b3;
+  }
+  
+  .hljs-meta {
+    color: #999;
+    font-weight: bold;
+  }
+  
+  .hljs-deletion {
+    background: #fdd;
+  }
+  
+  .hljs-addition {
+    background: #dfd;
+  }
+  
+  .hljs-emphasis {
+    font-style: italic;
+  }
+  
+  .hljs-strong {
+    font-weight: bold;
+  }
+		</style>
+	</head>
+	<body>
+		<nav id="table-of-contents">
+			
+		</nav>
+		<main>
+			<p><strong>Двадцать девять дней до летнего солнцестояния</strong></p>
+<p>Как дети становятся похожими на своих родителей, как в творении отпечатывается душа творца, а на лицах идолопоклонников отражаются их идолы — так же и боги заботливо лепили себе помазанников, пророков и прочих бездельников, словно свои автопортреты. Потому Коловрат всегда имел кристально ясное представление о сути солнца. С малых лет Агний озарял своим присутствием любые сборища — если подойти к нему относительно близко, то можно было почувствовать, каким теплым был воздух вокруг него. Сходство с солнцем доходило в нём до того, что коли на него прямо посмотреть, так и зажмуриться хочется.</p>
+<p>Впрочем, в последнем с Коловратом никто не соглашался.</p>
+<p>Помимо отражения божественной сути, Агний был также хорошим образцом стандартов красоты в священном городе Гелиограде: силуэт его был тонок и изящен, а нежные черты лица делали его похожим на девицу. И, несмотря на большую внешнюю схожесть с братом, Коловрат в этом плане отличался от него, увы, не в самую выгодную сторону для себя — плечи были шире, лицо значительно грубее и острее.</p>
+<p>— Иди, раз велено. — Коловрат отступил на шаг, позволяя пройти.</p>
+<p>— Ты все ещё не ответил на мой вопрос.  — Агний легкомысленно пропустил его слова мимо ушей.</p>
+<p>— Ты и сам знаешь, что я занят. Разве я могу кому передоверить организацию фестиваля?</p>
+<p>Агний, кажется, вновь не слушал, потому как ему было прекрасно известно, что скажет старший брат. Он с хитрой прищурью оглядывал Коловрата, пока, наконец, не сказал:</p>
+<p>— А что же ты камзол червонный снял? Уж не собрался ли от Тефлиоса отречься?</p>
+<p>Роскошный красный камзол Коловрат должен был надевать, покуда исполнял свои обязанности. Он, хоть и не подавал виду, но очень любил эту одежду, расшитую золочёными нитками, она вселяла в него уверенность, да и смотрелась на нем и впрямь славно. А красный был цветом церкви Тефлиоса, так что камзол был в высшей степени форменным элементом.</p>
+<p>— А что это за чёрная рубаха? От кого скрываешься? — Агний дёрнул скромную шнуровку невзрачной одежды Коловрата. — И щёки как у девицы горят!</p>
+<p>— Твоё дело — это солнышко да птички, так что не лезь, куда не просят. — Резко ответил Коловрат, чьё раздражение уже достигло пика. — Займись лучше своим долгом. Сказали небо — вот и ступай.</p>
+<p>Хотелось выругать недоумка последними словами, да не хотелось тратить время. Коловрат стремительно двинулся дальше, и Агний невольно уступил дорогу, иначе брат непременно задел бы его, быть может, даже сбил с ног.</p>
+<hr>
+<p>Лицо дежурившего послушника ничуть не изменилось, когда Коловрат предъявил письменное дозволение от цензора Глины. Его, казалось, ничто не может удивить или выбить из колеи. Такая молчаливая исполнительность Коловрату нравилась.</p>
+<p>Он сделал пару шагов и замер. Библиотека была погружена во мрак, из окон, узкими полосками синевших под самым потолком, просачивался тусклый свет. Коловрат не слышал звука собственных шагов — часто расставленные книжные стеллажи поглощали собою любой шум. Если бы он заговорил (а говорить он не решался), вместо собственного голоса он услышал бы глухое бормотание. Тонкие дорожки между книжными рядами уходили далеко в темноту, где продолжались тянуться еще неизвестно сколько.</p>
+<p>Коловрат знал, что именно ему нужно искать, но понятия не имел, как будет это делать. Сладковатый запах книжной пыли вкупе с давлением безмерности этого места кружили голову. Трудно сказать, приятное это было ощущение или нет. Но, пожалуй, если бы Коловрат не чувствовал себя молодцом из-за того только, что сумел сюда пробраться, его, верно, стошнило бы.</p>
+<p>Ночь предстояла тяжелая и, с пугающей вероятностью, бесплодная. Ему пришлось подойти совсем вплотную к ближайшему стеллажу, чтобы разобрать, что написано на книжном корешке.</p>
+<p>«Полный дискурс о скором вымирании Тисохросы. Том 5».</p>
+<p>Нет, это совсем не то что ему требуется. Коловрат фыркнул и двинулся дальше.</p>
+<p>Если Большая Библиотека Натсиаян была устроена так же, как и другие известные ему библиотеки, то книги должны были быть расставлены по областям знаний. Если же здесь была какая-то другая закономерность… Впрочем, обдумывать этот сценарий смысла не было — если понадобится, он перероет всю библиотеку.</p>
+<p>Он твердо пошел вперед. Голова кружилась все сильнее. Не успел Коловрат пройти и двадцати шагов, как какой-то звук заставил его остановиться. Внезапно явившийся шорох постепенно затих, словно посмеиваясь. Коловрат вгляделся в темноту, но ничего не увидел. Он только нахмурился и продолжил идти, чувствуя теперь, что он в большей степени скрывается, чем ищет.</p>
+<p>— Отщепенец. — Прошелестело где-то слева.</p>
+<p>Весьма неотчетливо, но Коловрат услышал именно это слово.  Но даже если слово ему только послышалось, некто все-таки издал этот звук. Или нечто. Страха у него не возникло, только настороженность.</p>
+<p>— Иди за мной, холоп.</p>
+<p>Голос опять был нечетким, но на сей раз пронзительно высоким. Коловрат остановился. Он слышал огромное множество самых разнообразных сказаний о злых духах. Да и разве обойдется даже самая мелкая деревушка без своей истории об очередном висельнике, русалке или страшном звере, пожирающим заблудившихся гостей? Только вот на деле кроме отдаленных стонов или смутных силуэтов призраков (бесполезных и сущности безобидных), он никого не встречал.</p>
+<p>Разумеется, и Градомудрище не осталось без своих легенд, самым знаменитым из которых был Алас — сын самой Натсиаян, богини знаний, рожденный от бога забвения Немесена. Дитя противоположностей, по преданиям, был безжалостен и непредсказуем.</p>
+<p>Последней связной мыслью Коловрата было: «не черти ли заворожили?», после чего его сознание сковала странная дремота, меж тем как его тело продолжало двигаться. Сквозь полузабытие он чувствовал, как нечто толкает его в спину, побуждая идти дальше. Подчиняться этой силе было приятно.  Коловрату казалось, что, если он захочет, то с легкостью вырвется из потусторонних рук.</p>
+<p>Но он не знал пути, так что решил иметь хоть какого-то проводника, а не скитаться в темноте одному. Все эти мысли заняли у него не больше минуты, потому что весьма скоро он забыл и о том, зачем он сюда пришел, и о любых опасениях касаемо нечисти, и свое имя.</p>
+<p>Плохо Коловрат запомнил и происходившее с ним в тёмных углах библиотеки. Это походило на болезненный отстраненно-мучительный бред, ничего конкретного из которого припомнить было невозможно.</p>
+<p>Первым, что вернуло его на землю, было ощущение грубого полотна истоптанного ковра на собственной щеке. Коловрат лежал на полу. Теперь он понимал, что он здесь один, никаких голосов и посторонних сущностей не было. Либо они хорошо затаились. Он повернул голову и увидел, как в темноте сверкнули позолоченные буквы на корешке книги.</p>
+<p>Книга стояла на самой нижней полке, так что Коловрату не пришлось даже приподниматься, чтобы взять её — стоило только протянуть руку. Но чтобы что-то разобрать, нужно было чуть больше света.</p>
+<p>Коловрат огляделся. Свет от ближайшего оконца падал бледной полоской на стеллаж в паре метров от него. Доползти до него оказалось неожиданно тяжело — руки и ноги сводило как в разгар лихорадки, а в голове что-то болезненно кололо.</p>
+<p>Когда Коловрат наконец-то смог прочитать название книги, он резко оглянулся вокруг, пытаясь застать кого-то прячущегося возле него врасплох. Но никого не было. В руках Коловрата был том откровений мудрейшей Трелы. Одна из тех книг, которые он надеялся здесь найти. Значит, это было не помутнение рассудка из-за дурного воздуха или чего-нибудь ещё.</p>
+<p>Нечто целенаправленно привело его к этому стеллажу, да ещё и бросило об пол прямо рядом с необходимой ему книгой. Коловрат в восторге закусил губу. Ему помогли! Он впервые в жизни понравился какой-то сущности и получил неоценимую помощь. У него наконец-то начало получаться, и сейчас как никогда он поверил, что сможет достичь своей весьма туманной цели.</p>
+<p>Он открыл книгу. Древняя мудрейшая Трела была известна тем, что за свою долгую жизнь сумела перезнакомиться со всеми богами и богинями, известными на просторах Благословенных земель. И знания, открывшиеся ей, были до того ценными, а многие и опасными, что имя её вошло в негласный список нежелательных к освещению. Но, несмотря на усилия духовенств всех церквей по сохранению чрезвычайных знаний от недобрых глаз, Коловрату всё же стало известно больше, чем полагалось. Более того, раз за разом договариваясь, с кем следует, он выведал, где хранились одни из крайне немногочисленных экземпляров её трудов.</p>
+<p>В страницы хотелось яростно вцепиться и грубо пролистать их. Но книга могла быть и ровесницей самой Трелы, а сколько сотен лет — быть может, одна, а, может, и пять — прошло с момента её смерти, Коловрат не знал.</p>
+<p>За откровениями Трелы он просидел на полу почти до самого рассвета, изучив старый томик от корки до корки. И, несмотря на зверскую усталость, ему было совсем не до сна.</p>
+<p>Он нашел то, что искал.</p>
+
+		</main>
+	</body>
+</html>
