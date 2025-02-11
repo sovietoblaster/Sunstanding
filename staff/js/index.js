@@ -1,7 +1,7 @@
 'use stict';
 
-import { readSecrets } from './secrets.js';
-import { ContentManager } from './ContentManager.js';
+import { readSecrets } from './staff/js/secrets.js';
+import { ContentManager } from './staff/js/ContentManager.js';
 
 async function main() {
     let authToken = readSecrets();
