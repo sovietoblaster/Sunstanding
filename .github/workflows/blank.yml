@@ -24,7 +24,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
-      - uses: baileyjm02/markdown-to-pdf@v1
+      - name: Render md
+        uses: baileyjm02/markdown-to-pdf@v1
         with:
           input_dir: source/
           output_dir: pdfs/
@@ -40,21 +41,36 @@ jobs:
       #     name: source
       #     path: pdfs
 
+      - name: Set secret
+        env:
+          SECRET_AUTH: ${{ secrets.SECRET_AUTH }}
+        run: |
+          secrets.me < "$SECRET_AUTH" 
+        shell: bash
+
+      - name: Publish Telegra.ph
+        runs:
+          using: 'node20'
+          main: 'staff/js/index'
+          
+
       - name: Commit files
         id: commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git add pdfs\*.pdf
-          git commit -m "<auto> publish after $(git log --pretty=format:"%s" -1)" -a
-        # if [ -z "$(git status --porcelain)" ]; then
-        #   echo "PUSH=false" >> $GITHUB_ENV
-        # else
-        #   echo "PUSH=true" >> $GITHUB_ENV
-        # fi
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "PUSH=false" >> $GITHUB_ENV
+          else
+            git commit -m "<auto> publish after $(git log --pretty=format:"%s" -1)" -a
+            echo "PUSH=true" >> $GITHUB_ENV
+          fi
         shell: bash
       - name: Push changes
-        # if: env.PUSH == 'true'
+        if: env.PUSH == 'true'
+        env:
+          PUSH: "fake"
         uses: ad-m/github-push-action@master
         with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
