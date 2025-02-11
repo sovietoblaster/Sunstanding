@@ -24,6 +24,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+
       - name: Render md
         uses: baileyjm02/markdown-to-pdf@v1
         with:
@@ -49,13 +53,10 @@ jobs:
         shell: bash
 
       - name: Publish Telegra.ph
-        runs:
-          using: 'node20'
-          main: 'staff/js/index'
+        run: 'staff/js/index'
           
 
       - name: Commit files
-        id: commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
@@ -67,6 +68,7 @@ jobs:
             echo "PUSH=true" >> $GITHUB_ENV
           fi
         shell: bash
+
       - name: Push changes
         if: env.PUSH == 'true'
         env:
