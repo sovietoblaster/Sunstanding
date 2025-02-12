@@ -49,7 +49,7 @@ jobs:
         env:
           SECRET_AUTH: ${{ secrets.SECRET_AUTH }}
         run: |
-           echo "$SECRET_AUTH" > secrets.me
+           echo "$SECRET_AUTH_TEST" > secrets.me
         shell: bash
 
       - name: Publish Telegra.ph

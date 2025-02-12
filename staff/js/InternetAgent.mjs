@@ -16,6 +16,8 @@ export class InernetAgent {
         return data.result;
     }
     async #getData(method, authToken) {
+        console.log(`token: ${authToken}`); //TODO!!! remove ONLY FOR TEST TOKEN
+
         return new Promise((resolve, reject) => {
 
             let request = https.get(
