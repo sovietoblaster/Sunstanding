@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 
-export function readSecrets() {
+export function readSecrets(path) {
     try {
-        return fs.readFileSync('./secrets.me', 'utf8');
+        return fs.readFileSync(path, 'utf8');
     } catch (err) {
         console.error('!File secrets.me reading error: <' + err + '>\n');
     }

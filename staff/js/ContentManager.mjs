@@ -1,4 +1,4 @@
-import { InernetAgent } from './InternetAgent.js';
+import { InernetAgent } from './InternetAgent.mjs';
 
 export class ContentManager {
     #authToken;

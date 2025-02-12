@@ -53,7 +53,10 @@ jobs:
         shell: bash
 
       - name: Publish Telegra.ph
-        run: 'node staff/js/index'
+        run: |
+          cd staff/js
+          node index.mjs ../..
+          cd ../..
         shell: bash
           
 
