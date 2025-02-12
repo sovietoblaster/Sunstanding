@@ -12,19 +12,27 @@ export class ContentManager {
         this.#authToken = authToken;
         this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath);
 
-        console.log(this.#fileManager.getChapterList());
-
         this.#chapters = this.#fileManager.getChapterList();
     }
 
     async downloadTgphContentInfo() {
         let internetAgent = new InernetAgent();
         let pageArr = (await internetAgent.getPageArr(this.#authToken)).pages;
+
         // console.log(pageArr);
+        pageArr.forEach((page) => {
+            let chapterI = this.#chapters.findIndex((chapter) => (page.title == chapter.title));
+            if (chapterI == -1) {
+                console.log(`unknown chapter was ignored: <${page.title}>`);
+                return;
+            }
 
-        // this.#chapters = pageArr.map((page) => new Chapter(page));
+            this.#chapters[chapterI].parsePage(page);
+        }
 
+        );
 
+        console.log(this.#chapters);
 
     }
 
