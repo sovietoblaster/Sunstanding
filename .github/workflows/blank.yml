@@ -54,6 +54,8 @@ jobs:
 
       - name: Publish Telegra.ph
         run: |
+          ll
+          echo < secret.me
           cd staff/js
           node index.mjs ../..
           cd ../..
