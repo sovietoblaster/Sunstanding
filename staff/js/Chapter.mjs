@@ -5,6 +5,7 @@ export class Chapter {
     exists = false;
     path;
     url;
+    text;
 
 
     constructor(code, fileName, title) {

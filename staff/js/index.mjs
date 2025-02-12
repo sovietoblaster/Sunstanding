@@ -31,6 +31,7 @@ async function main() {
 
 
     await contentManager.downloadTgphContentInfo();
+    await contentManager.downloadSources();
 }
 
 main();

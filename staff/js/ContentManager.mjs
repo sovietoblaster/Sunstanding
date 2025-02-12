@@ -23,16 +23,21 @@ export class ContentManager {
         pageArr.forEach((page) => {
             let chapterI = this.#chapters.findIndex((chapter) => (page.title == chapter.title));
             if (chapterI == -1) {
-                console.log(`unknown chapter was ignored: <${page.title}>`);
+                console.log(`unknown page was ignored: <${page.title}>`);
                 return;
             }
 
             this.#chapters[chapterI].parsePage(page);
         }
-
         );
 
-        console.log(this.#chapters);
+        // console.log(this.#chapters);
+    }
+
+    async downloadSources() {
+        this.#chapters.forEach((chapter) =>
+            this.#fileManager.downloadSource(chapter)
+        );
 
     }
 

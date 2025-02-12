@@ -2,7 +2,6 @@ import * as fs from 'node:fs';
 
 import { Chapter } from './Chapter.mjs';
 
-const nameRegExp = new RegExp('^[^.]*', 'ud'); // match name without extension
 
 export class FileManager {
     #codeRegExp; // match chapter code without extension, postfix
@@ -18,7 +17,6 @@ export class FileManager {
     }
 
     getChapterList() {
-
         let dirContent = fs.readdirSync(this.#sourcePath);
 
         return dirContent.map((fileName) => this.#createChapter(fileName));
@@ -37,4 +35,24 @@ export class FileManager {
         return new Chapter(codeRes[0], nameRes[0], this.#code2title(nameRes[0]));
     }
 
+    downloadSource(chapter) {
+        let data;
+        try {
+            data = fs.readFileSync(`${this.#sourcePath}/${chapter.fileName}.html`, 'utf8');
+        } catch (err) {
+            throw new Error(`!Source html file <${chapter.fileName}> reading error: <${err}>`);
+        }
+
+        let textRes = data.match(textRegExp);
+        if (textRes === null) throw new Error(`!Source html file <${chapter.fileName}> parsing error`);
+
+        chapter.text = textRes[0].slice(BEGINTAG.length, -ENDTAG.length).trim();
+    }
+
 }
+
+const nameRegExp = new RegExp('^[^.]*', 'ud'); // match name without extension
+
+const BEGINTAG = '<main>';
+const ENDTAG = '</main>';
+const textRegExp = new RegExp(`${BEGINTAG}.*${ENDTAG}`, 'uds'); // text in html file
