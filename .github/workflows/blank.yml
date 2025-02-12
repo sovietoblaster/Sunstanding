@@ -47,15 +47,15 @@ jobs:
 
       - name: Set secret
         env:
-          SECRET_AUTH: ${{ secrets.SECRET_AUTH }}
+          SECRET_AUTH: ${{ secrets.SECRET_AUTH_TEST }}
         run: |
-           echo "$SECRET_AUTH_TEST" > secrets.me
+          echo "$SECRET_AUTH" > secrets.me
         shell: bash
 
       - name: Publish Telegra.ph
         run: |
-          ll
-          echo < secret.me
+          ls -l
+          echo < secrets.me
           cd staff/js
           node index.mjs ../..
           cd ../..
