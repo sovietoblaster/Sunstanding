@@ -16,8 +16,6 @@ export class InernetAgent {
         return data.result;
     }
     async #getData(method, authToken) {
-        console.log(`token: ${authToken}`); //TODO!!! remove ONLY FOR TEST TOKEN
-        console.log(`path: <${'/' + method + '?access_token=' + authToken}>`); //TODO!!! remove ONLY FOR TEST TOKEN
 
         return new Promise((resolve, reject) => {
 
@@ -29,7 +27,6 @@ export class InernetAgent {
 
                 (res) => this.#processResponceData(res, resolve, reject)
             );
-            console.log(`request: <${request.path}>`); //TODO!!! remove ONLY FOR TEST TOKEN
             request.end();
 
         });
