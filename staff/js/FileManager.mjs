@@ -51,10 +51,12 @@ export class FileManager {
         let textRes = data.match(textRegExp);
         if (textRes === null) throw new Error(`!Source html file <${chapter.fileName}> parsing error`);
 
-        chapter.text = textRes[0].slice(BEGINTAG.length, -ENDTAG.length).trim();
+        // chapter.text = textRes[0].slice(BEGINTAG.length, -ENDTAG.length).trim();
+        // chapter.text = textRes[0]; // <main> tag is useful hint
+        chapter.text = textRes[0].slice(BEGINTAG.length).trim(); // </main> tag is useful hint
 
-        chapter.content = (new DomHtmlParser(chapter.text)).content;
-        console.log(JSON.stringify(chapter.content));
+        chapter.content = (new DomHtmlParser(chapter.text)).parse();
+        console.log(chapter.content);
     }
 
 }
