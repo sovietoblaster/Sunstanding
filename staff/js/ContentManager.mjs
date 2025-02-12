@@ -1,6 +1,6 @@
 import { InernetAgent } from './InternetAgent.mjs';
-import { Chapter } from './Chapter.mjs';
 import { FileManager } from './FileManager.mjs';
+import { Chapter } from './Chapter.mjs';
 
 export class ContentManager {
     #authToken;
@@ -8,11 +8,13 @@ export class ContentManager {
 
     #chapters;
 
-    constructor(authToken, sourcePath) {
+    constructor(authToken, sourcePath, codeRegExp, code2title) {
         this.#authToken = authToken;
-        this.#fileManager = new FileManager(sourcePath);
+        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath);
 
         console.log(this.#fileManager.getChapterList());
+
+        this.#chapters = this.#fileManager.getChapterList();
     }
 
     async downloadTgphContentInfo() {
@@ -20,7 +22,7 @@ export class ContentManager {
         let pageArr = (await internetAgent.getPageArr(this.#authToken)).pages;
         // console.log(pageArr);
 
-        this.#chapters = pageArr.map((page) => new Chapter(page));
+        // this.#chapters = pageArr.map((page) => new Chapter(page));
 
 
 
