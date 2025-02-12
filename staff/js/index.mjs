@@ -4,6 +4,7 @@ import process from 'node:process';
 
 const pathHome = process.argv[2];   // 1st command argument is the path to the home directory like './..'
 const pathSource = process.argv[3]; // 2nd command argument is the path to the source directory from home
+const pathRender = process.argv[4]; // 3nd command argument is the path to the directory with rendered files from home
 
 const codeRegExp = new RegExp('^\\d_\\d\\d', 'ud'); // match chapter code without extension, postfix
 
@@ -15,6 +16,7 @@ async function main() {
         contentManager = new ContentManager(
             authToken,
             `${pathHome}/${pathSource}/`,
+            `${pathHome}/${pathRender}/`,
             codeRegExp,
             (code) => {
                 // let res = code.match(codeRegExp);

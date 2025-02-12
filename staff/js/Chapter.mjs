@@ -6,6 +6,7 @@ export class Chapter {
     path;
     url;
     text;
+    content;
 
 
     constructor(code, fileName, title) {

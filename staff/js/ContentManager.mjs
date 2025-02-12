@@ -8,9 +8,9 @@ export class ContentManager {
 
     #chapters;
 
-    constructor(authToken, sourcePath, codeRegExp, code2title) {
+    constructor(authToken, sourcePath, renderPath, codeRegExp, code2title) {
         this.#authToken = authToken;
-        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath);
+        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath, renderPath);
 
         this.#chapters = this.#fileManager.getChapterList();
     }

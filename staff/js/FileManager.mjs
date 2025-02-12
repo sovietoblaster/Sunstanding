@@ -1,5 +1,7 @@
 import * as fs from 'node:fs';
 
+import { DomHtmlParser } from './DomHtmlParser.mjs';
+
 import { Chapter } from './Chapter.mjs';
 
 
@@ -7,13 +9,16 @@ export class FileManager {
     #codeRegExp; // match chapter code without extension, postfix
     #code2title; // function converting chapter code to title
     #sourcePath;
+    #renderPath;
 
-    constructor(codeRegExp, code2title, sourcePath) {
+    constructor(codeRegExp, code2title, sourcePath, renderPath) {
         this.#codeRegExp = codeRegExp;
         this.#code2title = code2title;
         this.#sourcePath = sourcePath;
+        this.#renderPath = renderPath;
 
         fs.access(this.#sourcePath, (err) => { if (err !== null) throw err });
+        fs.access(this.#renderPath, (err) => { if (err !== null) throw err });
     }
 
     getChapterList() {
@@ -38,7 +43,7 @@ export class FileManager {
     downloadSource(chapter) {
         let data;
         try {
-            data = fs.readFileSync(`${this.#sourcePath}/${chapter.fileName}.html`, 'utf8');
+            data = fs.readFileSync(`${this.#renderPath}/${chapter.fileName}.html`, 'utf8');
         } catch (err) {
             throw new Error(`!Source html file <${chapter.fileName}> reading error: <${err}>`);
         }
@@ -47,6 +52,9 @@ export class FileManager {
         if (textRes === null) throw new Error(`!Source html file <${chapter.fileName}> parsing error`);
 
         chapter.text = textRes[0].slice(BEGINTAG.length, -ENDTAG.length).trim();
+
+        chapter.content = (new DomHtmlParser(chapter.text)).content;
+        console.log(JSON.stringify(chapter.content));
     }
 
 }

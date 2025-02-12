@@ -55,7 +55,7 @@ jobs:
       - name: Publish Telegra.ph
         run: |
           cd staff/js
-          node index.mjs ../.. source
+          node index.mjs ../.. source pdfs
           cd ../..
         shell: bash
           
