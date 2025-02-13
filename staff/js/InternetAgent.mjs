@@ -26,9 +26,11 @@ export class InernetAgent {
             'POST',
             (chapter.exists === true ? 'editPage' : 'createPage'),
             authToken,
-            decor.getParams().concat(new HttpParameter('title', chapter.title),
-                (chapter.exists === true ? new HttpParameter('path', chapter.path) : []),
-                [new HttpParameter('content', chapter.content)])
+            [].concat(
+                decor.getParams(),
+                [new HttpParameter('title', chapter.title)],
+                chapter.exists === true ? [new HttpParameter('path', chapter.path)] : []),
+            [new HttpParameter('content', chapter.content)]
         ).then(
             (res) => JSON.parse(res)
         );
