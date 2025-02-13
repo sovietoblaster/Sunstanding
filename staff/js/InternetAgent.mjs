@@ -12,7 +12,7 @@ export class InernetAgent {
     }
 
     async getPageArr(authToken) {
-        let data = await this.#getData('getPageList', authToken).then(
+        let data = await this.#requestData('GET', 'getPageList', authToken).then(
             (res) => JSON.parse(res)
         );
         if (data.ok !== true) throw new Error(`telegra.ph error: <${data.error}>`);
@@ -22,7 +22,8 @@ export class InernetAgent {
     }
 
     async createPage(authToken, chapter, decor) {
-        let data = await this.#postData(
+        let data = await this.#requestData(
+            'POST', 
             'createPage',
             authToken,
             decor.getParams().concat(new HttpParameter('title', chapter.title), new HttpParameter('content', chapter.content))
@@ -34,36 +35,18 @@ export class InernetAgent {
 
     }
 
-    async #getData(method, authToken, params = []) {
+    async #requestData(httpsMethod, tgphMethod, authToken, params = []) {
         params.unshift(new HttpParameter('access_token', authToken));
         let pathParams = params.map((param) => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`).join('&');
         console.log(pathParams);
 
         return new Promise((resolve, reject) => {
 
-            let request = https.get(
+            let request = https.request(
                 {
+                    method: httpsMethod,
                     hostname: 'api.telegra.ph',
-                    path: `/${method}?${pathParams}`,
-                },
-
-                (res) => this.#processResponceData(res, resolve, reject)
-            );
-            request.end();
-
-        });
-    }
-    async #postData(method, authToken, params = []) {
-        params.unshift(new HttpParameter('access_token', authToken));
-        let pathParams = params.map((param) => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`).join('&');
-        console.log(pathParams);
-
-        return new Promise((resolve, reject) => {
-
-            let request = https.post(
-                {
-                    hostname: 'api.telegra.ph',
-                    path: `/${method}?${pathParams}`,
+                    path: `/${tgphMethod}?${pathParams}`,
                 },
 
                 (res) => this.#processResponceData(res, resolve, reject)
