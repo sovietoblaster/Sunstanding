@@ -44,7 +44,7 @@ export class InernetAgent {
 
             let request = https.request(
                 {
-                    method: httpsMethod,
+                    method: 'POST',
                     hostname: 'api.telegra.ph',
                     path: `/${tgphMethod}?${pathParams}`,
                 },
