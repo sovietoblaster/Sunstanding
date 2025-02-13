@@ -30,7 +30,7 @@ async function main() {
 
                 return `Солнцестояние глава ${nums[1]}`;
             },
-            new Decor('Сёматест', 'https://t.me/+XZZWLNSYpU03YWMy'),
+            new Decor('Сёма', 'https://t.me/+XZZWLNSYpU03YWMy'),
         );
     }
 
