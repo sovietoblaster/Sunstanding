@@ -2,11 +2,13 @@ export class Chapter {
     code;
     fileName;
     title;
+
+    text;
+    content;
+
     exists = false;
     path;
     url;
-    text;
-    content;
 
 
     constructor(code, fileName, title) {

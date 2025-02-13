@@ -1,5 +1,9 @@
 import * as https from 'node:https';
 
+import { HttpParameter } from './HttpParameter.mjs';
+
+import { Chapter } from './Chapter.mjs';
+
 export class InernetAgent {
 
 
@@ -11,18 +15,28 @@ export class InernetAgent {
             (res) => JSON.parse(res)
         );
         if (data.ok !== true) throw new Error(`telegra.ph error: <${data.error}>`);
-        // console.log(data);
+        console.log(JSON.stringify(data));
         if (data.result.total_count !== data.result.pages.length) throw new Error('telegra.ph response error: array is incorrect');
         return data.result;
     }
-    async #getData(method, authToken) {
+
+    async createPage(authToken, chapter) {
+        let data = await this.#getData('createPage', authToken).then(
+            (res) => JSON.parse(res)
+        );
+
+    }
+
+    async #getData(method, authToken, params = []) {
+        params.unshift(new HttpParameter('access_token', authToken));
+        let pathParams = params.map((param) => `${param.name}=${param.value}`).join('&');
 
         return new Promise((resolve, reject) => {
 
             let request = https.get(
                 {
                     hostname: 'api.telegra.ph',
-                    path: '/' + method + '?access_token=' + authToken,
+                    path: `/${method}?${pathParams}`,
                 },
 
                 (res) => this.#processResponceData(res, resolve, reject)
