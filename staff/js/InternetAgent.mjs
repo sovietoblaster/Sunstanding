@@ -22,7 +22,7 @@ export class InernetAgent {
     }
 
     async createPage(authToken, chapter, decor) {
-        let data = await this.#getData(
+        let data = await this.#postData(
             'createPage',
             authToken,
             decor.getParams().concat(new HttpParameter('title', chapter.title), new HttpParameter('content', chapter.content))
@@ -42,6 +42,25 @@ export class InernetAgent {
         return new Promise((resolve, reject) => {
 
             let request = https.get(
+                {
+                    hostname: 'api.telegra.ph',
+                    path: `/${method}?${pathParams}`,
+                },
+
+                (res) => this.#processResponceData(res, resolve, reject)
+            );
+            request.end();
+
+        });
+    }
+    async #postData(method, authToken, params = []) {
+        params.unshift(new HttpParameter('access_token', authToken));
+        let pathParams = params.map((param) => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`).join('&');
+        console.log(pathParams);
+
+        return new Promise((resolve, reject) => {
+
+            let request = https.post(
                 {
                     hostname: 'api.telegra.ph',
                     path: `/${method}?${pathParams}`,
