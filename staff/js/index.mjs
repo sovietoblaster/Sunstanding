@@ -2,6 +2,8 @@ import { readSecrets } from './secrets.mjs';
 import { ContentManager } from './ContentManager.mjs';
 import process from 'node:process';
 
+import { Decor } from './Decor.mjs';
+
 const pathHome = process.argv[2];   // 1st command argument is the path to the home directory like './..'
 const pathSource = process.argv[3]; // 2nd command argument is the path to the source directory from home
 const pathRender = process.argv[4]; // 3nd command argument is the path to the directory with rendered files from home
@@ -27,13 +29,15 @@ async function main() {
                 if (nums.length != 2 || nums[0] != 1) throw new Error(`!unknown code: <${code}>`);
 
                 return `Солнцестояние глава ${nums[1]}`;
-            }
+            },
+            new Decor('Сёматест', 'https://t.me/+XZZWLNSYpU03YWMy'),
         );
     }
 
 
     await contentManager.downloadTgphContentInfo();
     await contentManager.downloadSources();
+    await contentManager.upload();
 }
 
 main();

@@ -3,6 +3,7 @@ import * as https from 'node:https';
 import { HttpParameter } from './HttpParameter.mjs';
 
 import { Chapter } from './Chapter.mjs';
+import { Decor } from './Decor.mjs';
 
 export class InernetAgent {
 
@@ -20,16 +21,23 @@ export class InernetAgent {
         return data.result;
     }
 
-    async createPage(authToken, chapter) {
-        let data = await this.#getData('createPage', authToken).then(
+    async createPage(authToken, chapter, decor) {
+        let data = await this.#getData(
+            'createPage',
+            authToken,
+            decor.getParams().concat(new HttpParameter('title', chapter.title), new HttpParameter('content', chapter.content))
+        ).then(
             (res) => JSON.parse(res)
         );
+        console.log(JSON.stringify(data));
+        if (data.ok !== true) throw new Error(`telegra.ph page creating error: <${data.error}>`);
 
     }
 
     async #getData(method, authToken, params = []) {
         params.unshift(new HttpParameter('access_token', authToken));
-        let pathParams = params.map((param) => `${param.name}=${param.value}`).join('&');
+        let pathParams = params.map((param) => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`).join('&');
+        console.log(pathParams);
 
         return new Promise((resolve, reject) => {
 
