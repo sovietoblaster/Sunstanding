@@ -56,7 +56,7 @@ export class FileManager {
         chapter.text = textRes[0].slice(BEGINTAG.length).trim(); // </main> tag is useful hint
 
         chapter.content = (new DomHtmlParser(chapter.text)).parse();
-        console.log(chapter.content);
+        // console.log(chapter.content);
     }
 
 }

@@ -16,30 +16,31 @@ export class InernetAgent {
             (res) => JSON.parse(res)
         );
         if (data.ok !== true) throw new Error(`telegra.ph error: <${data.error}>`);
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         if (data.result.total_count !== data.result.pages.length) throw new Error('telegra.ph response error: array is incorrect');
         return data.result;
     }
 
-    async createPage(authToken, chapter, decor) {
+    async uploadPage(authToken, chapter, decor) {
         let data = await this.#requestData(
             'POST',
-            'createPage',
+            (chapter.exists === true ? 'editPage' : 'createPage'),
             authToken,
-            decor.getParams().concat(new HttpParameter('title', chapter.title)),
-            new HttpParameter('content', chapter.content)
+            decor.getParams().concat(new HttpParameter('title', chapter.title),
+                (chapter.exists === true ? new HttpParameter('path', chapter.path) : []),
+                [new HttpParameter('content', chapter.content)])
         ).then(
             (res) => JSON.parse(res)
         );
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         if (data.ok !== true) throw new Error(`telegra.ph page creating error: <${data.error}>`);
-
     }
 
-    async #requestData(httpsMethod, tgphMethod, authToken, params = [], body) {
+    async #requestData(httpsMethod, tgphMethod, authToken, params = [], body = []) {
         params.unshift(new HttpParameter('access_token', authToken));
         let pathParams = params.map((param) => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`).join('&');
-        console.log(pathParams);
+        let bodyParams = body.map((param) => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`).join('&');
+        // console.log(pathParams);
 
         return new Promise((resolve, reject) => {
 
@@ -53,7 +54,7 @@ export class InernetAgent {
                 (res) => this.#processResponceData(res, resolve, reject)
             );
             if (body !== undefined) {
-                request.write(`${encodeURIComponent(body.name)}=${encodeURIComponent(body.value)}`);
+                request.write(bodyParams);
             }
             request.end();
 

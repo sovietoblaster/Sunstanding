@@ -50,7 +50,8 @@ export class ContentManager {
         // console.log(this.#chapters);
 
         this.#chapters.forEach((chapter) => {
-            if (chapter.exists == false) internetAgent.createPage(this.#authToken, chapter, this.#decor);
+            // if (chapter.exists == false) internetAgent.createPage(this.#authToken, chapter, this.#decor);
+            internetAgent.uploadPage(this.#authToken, chapter, this.#decor);
         });
     }
 
