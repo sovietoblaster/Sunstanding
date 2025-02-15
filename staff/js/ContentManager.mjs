@@ -55,5 +55,11 @@ export class ContentManager {
         });
     }
 
+    async setPdf() {
+        this.#chapters.forEach((chapter) =>
+            this.#fileManager.setPdf(chapter)
+        );
+    }
+
 
 }

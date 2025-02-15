@@ -1,5 +1,7 @@
 import * as fs from 'node:fs';
 
+import * as child_process from 'node:child_process';
+
 import { DomHtmlParser } from './DomHtmlParser.mjs';
 
 import { Chapter } from './Chapter.mjs';
@@ -57,6 +59,15 @@ export class FileManager {
 
         chapter.content = (new DomHtmlParser(chapter.text)).parse();
         // console.log(chapter.content);
+    }
+
+    setPdf(chapter) {
+        try {
+            child_process.execSync(`mv "${this.#renderPath}/${chapter.fileName}.pdf" "${this.#renderPath}/${chapter.fileName} ${chapter.title}.pdf"'`);
+        } catch (err) {
+            console.log(`   pdf renaming error:`);
+            console.log(err);
+        }
     }
 
 }
