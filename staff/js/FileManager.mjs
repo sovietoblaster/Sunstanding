@@ -62,12 +62,7 @@ export class FileManager {
     }
 
     setPdf(chapter) {
-        try {
-            child_process.execSync(`mv "${this.#renderPath}/${chapter.fileName}.pdf" "${this.#renderPath}/${chapter.fileName} ${chapter.title}.pdf"`);
-        } catch (err) {
-            console.log(`   pdf renaming error:`);
-            console.log(err);
-        }
+        child_process.execSync(`mv "${this.#renderPath}/${chapter.fileName}.pdf" "${this.#renderPath}/${chapter.fileName} ${chapter.title}.pdf"`);
     }
 
 }
