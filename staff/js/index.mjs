@@ -17,8 +17,8 @@ async function main() {
 
         contentManager = new ContentManager(
             authToken,
-            `${pathHome}/${pathSource}/`,
-            `${pathHome}/${pathRender}/`,
+            `${pathHome}/${pathSource}`,
+            `${pathHome}/${pathRender}`,
             codeRegExp,
             (code) => {
                 // let res = code.match(codeRegExp);
@@ -35,6 +35,7 @@ async function main() {
     }
 
 
+    await contentManager.setPdf();
     await contentManager.downloadTgphContentInfo();
     await contentManager.downloadSources();
     await contentManager.upload();
