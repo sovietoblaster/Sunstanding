@@ -29,33 +29,39 @@ export class DomHtmlParser {
             }
 
             if (curChar == '<') {
-
-                if (this.cursor.text[this.cursor.pos + 1] != '/') {
-
-                    let regRes = this.cursor.text.slice(this.cursor.pos).trim().match(new RegExp('^<[^<>/]*>', 'ud'));
-                    if (regRes === null) throw new Error(`!incorrect html tag in position <${this.cursor.pos}>`);
-
+                if (this.cursor.text[this.cursor.pos + 1] == '!') {                    
+                    let regRes = this.cursor.text.slice(this.cursor.pos).trim().match(new RegExp(`^<!--[^<>/]**-->`, 'ud'));
+                    if (regRes === null) throw new Error(`!incorrect md comment tag in position <${this.cursor.pos}>`);
+    
                     this.cursor.pos += regRes[0].length;
 
-                    parentArr.push(new Node(regRes[0].slice(1, -1)));
-
-                    if (TAG_LIST.indexOf(parentArr.at(-1).tag) == -1) throw new Error(`!unknown html tag: <${parentArr.at(-1).tag}>`);
-
-                    if (!TWIN_LIST[TAG_LIST.indexOf(parentArr.at(-1).tag)]) continue;
-
-                    parentArr.at(-1).children = [];
-                    this.#iterativeParse(parentArr.at(-1));
-
                     continue;
-                } else {
+                }
 
-
+                if (this.cursor.text[this.cursor.pos + 1] == '/') {
                     let regRes = this.cursor.text.slice(this.cursor.pos).trim().match(new RegExp(`^</${parent.tag}>`, 'ud'));
                     if (regRes === null) throw new Error(`!incorrect html closing tag in position <${this.cursor.pos}>: expected </${parent.tag}>`);
 
                     this.cursor.pos += regRes[0].length;
                     return;
                 }
+
+
+                let regRes = this.cursor.text.slice(this.cursor.pos).trim().match(new RegExp('^<[^<>/]*>', 'ud'));
+                if (regRes === null) throw new Error(`!incorrect html tag in position <${this.cursor.pos}>`);
+
+                this.cursor.pos += regRes[0].length;
+
+                parentArr.push(new Node(regRes[0].slice(1, -1)));
+
+                if (TAG_LIST.indexOf(parentArr.at(-1).tag) == -1) throw new Error(`!unknown html tag: <${parentArr.at(-1).tag}>`);
+
+                if (!TWIN_LIST[TAG_LIST.indexOf(parentArr.at(-1).tag)]) continue;
+
+                parentArr.at(-1).children = [];
+                this.#iterativeParse(parentArr.at(-1));
+
+                continue;
 
 
             } else {
