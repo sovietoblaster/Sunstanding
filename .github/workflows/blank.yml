@@ -56,7 +56,7 @@ jobs:
       - name: Publish Telegra.ph
         run: |
           cd staff/js
-          node index.mjs ../.. source pdfs
+          node main.mjs ../.. source pdfs
           cd ../..
         shell: bash
           
@@ -76,8 +76,8 @@ jobs:
 
       - name: Push changes
         if: env.PUSH == 'true'
-        env:
-          PUSH: 'true'
+        # env:
+        #   PUSH: 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
