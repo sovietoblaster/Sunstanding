@@ -30,7 +30,7 @@ export class DomHtmlParser {
 
             if (curChar == '<') {
                 if (this.cursor.text[this.cursor.pos + 1] == '!') {                    
-                    let regRes = this.cursor.text.slice(this.cursor.pos).trim().match(new RegExp(`^<!--[^<>/]**-->`, 'ud'));
+                    let regRes = this.cursor.text.slice(this.cursor.pos).trim().match(new RegExp(`^<!--[^<>/]*-->`, 'ud'));
                     if (regRes === null) throw new Error(`!incorrect md comment tag in position <${this.cursor.pos}>`);
     
                     this.cursor.pos += regRes[0].length;
