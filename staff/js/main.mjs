@@ -11,7 +11,11 @@ async function main() {
         })
         .finally(async () => {
             await contentManager.setPdf();
-        });
+        })
+        .finally(async () => {
+            await contentManager.setReadMe();
+        })
+        ;
 }
 
 main();

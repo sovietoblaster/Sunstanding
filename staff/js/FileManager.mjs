@@ -6,18 +6,23 @@ import { DomHtmlParser } from './DomHtmlParser.mjs';
 
 import { Chapter } from './Chapter.mjs';
 
+import { ReadMeStruct } from './ReadMeStruct.mjs';
 
 export class FileManager {
     #codeRegExp; // match chapter code without extension, postfix
     #code2title; // function converting chapter code to title
     #sourcePath;
     #renderPath;
+    #readmeTempPath;
+    #renderAbsPath;
 
-    constructor(codeRegExp, code2title, sourcePath, renderPath) {
+    constructor(codeRegExp, code2title, sourcePath, renderPath, readmeTempPath, renderAbsPath) {
         this.#codeRegExp = codeRegExp;
         this.#code2title = code2title;
         this.#sourcePath = sourcePath;
         this.#renderPath = renderPath;
+        this.#readmeTempPath = readmeTempPath;
+        this.#renderAbsPath = renderAbsPath;
 
         fs.access(this.#sourcePath, (err) => { if (err !== null) throw err });
         fs.access(this.#renderPath, (err) => { if (err !== null) throw err });
@@ -63,6 +68,17 @@ export class FileManager {
 
     setPdf(chapter) {
         child_process.execSync(`mv "${this.#renderPath}/${chapter.fileName}.pdf" "${this.#renderPath}/${chapter.fileName} ${chapter.title}.pdf"`);
+    }
+
+    getReadMe(chapters) {
+        let text;
+        try {
+            text = fs.readFileSync(`${this.#readmeTempPath}`, 'utf8');
+        } catch (err) {
+            throw new Error(`!ReadMe template file reading error: <${err}>`);
+        }
+
+        return new ReadMeStruct(text, chapters, this.#renderAbsPath);
     }
 
 }
