@@ -2,6 +2,7 @@ import { InernetAgent } from './InternetAgent.mjs';
 import { FileManager } from './FileManager.mjs';
 import { Chapter } from './Chapter.mjs';
 import { Decor } from './Decor.mjs';
+import { ReadMeStruct } from './ReadMeStruct.mjs';
 
 export class ContentManager {
     #authToken;
@@ -10,9 +11,9 @@ export class ContentManager {
     #chapters;
     #decor;
 
-    constructor(authToken, sourcePath, renderPath, codeRegExp, code2title, decor) {
+    constructor(authToken, sourcePath, renderPath, readmeTempPath, renderAbsPath, homePath, codeRegExp, code2title, decor) {
         this.#authToken = authToken;
-        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath, renderPath);
+        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath, renderPath, readmeTempPath, renderAbsPath, homePath);
 
         this.#chapters = this.#fileManager.getChapterList();
         this.#decor = decor;
@@ -61,5 +62,10 @@ export class ContentManager {
         );
     }
 
+    async setReadMe() {
+        let readmeStruct = this.#fileManager.getReadMe(this.#chapters);
+
+        this.#fileManager.writeReadMe(readmeStruct.getText());
+    }
 
 }

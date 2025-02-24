@@ -15,6 +15,9 @@ contentManager = new ContentManager(
     authToken,
     `${path.home}/${path.source}`,
     `${path.home}/${path.render}`,
+    `${path.home}/${path.readmeTemp}`,
+    `${path.render}`,
+    `${path.home}`,
     codeRegExp,
     (code) => {
         // let res = code.match(codeRegExp);

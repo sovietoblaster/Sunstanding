@@ -56,7 +56,7 @@ jobs:
       - name: Publish Telegra.ph
         run: |
           cd staff/js
-          node main.mjs ../.. source pdfs
+          node main.mjs ../.. source pdfs staff/md/ReadMeTemp.md
           cd ../..
         shell: bash
           
@@ -66,6 +66,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git add pdfs\*.pdf
+          git add ReadMe.md
           if [ -z "$(git status --porcelain)" ]; then
             echo "PUSH=false" >> $GITHUB_ENV
           else
