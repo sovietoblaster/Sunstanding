@@ -26,8 +26,8 @@ export class ReadMeStruct {
             .replace(new RegExp(T_2_TITLE, 'ud'), chapter.title)
             .replace(new RegExp(T_3_NAME, 'ud'), chapter.url)
             .replace(new RegExp(T_3_PATH, 'ud'), chapter.url)
-            .replace(new RegExp(T_4_NAME, 'ud'), `${this.#filePath}/${chapter.fileName}`)
-            .replace(new RegExp(T_4_PATH, 'ud'), `${this.#filePath}/${chapter.fileName}`)
+            .replace(new RegExp(T_4_NAME, 'ud'), `${this.#filePath}/${chapter.title}.pdf`)
+            .replace(new RegExp(T_4_PATH, 'ud'), `${this.#filePath}/${chapter.title}.pdf`)
             ;
     }
 
