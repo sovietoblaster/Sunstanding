@@ -11,9 +11,9 @@ export class ContentManager {
     #chapters;
     #decor;
 
-    constructor(authToken, sourcePath, renderPath, readmeTempPath, renderAbsPath, codeRegExp, code2title, decor) {
+    constructor(authToken, sourcePath, renderPath, readmeTempPath, renderAbsPath, homePath, codeRegExp, code2title, decor) {
         this.#authToken = authToken;
-        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath, renderPath, readmeTempPath, renderAbsPath);
+        this.#fileManager = new FileManager(codeRegExp, code2title, sourcePath, renderPath, readmeTempPath, renderAbsPath, homePath);
 
         this.#chapters = this.#fileManager.getChapterList();
         this.#decor = decor;
@@ -65,6 +65,7 @@ export class ContentManager {
     async setReadMe() {
         let readmeStruct = this.#fileManager.getReadMe(this.#chapters);
 
+        this.#fileManager.writeReadMe(readmeStruct.getText());
     }
 
 }

@@ -15,14 +15,16 @@ export class FileManager {
     #renderPath;
     #readmeTempPath;
     #renderAbsPath;
+    #homePath;
 
-    constructor(codeRegExp, code2title, sourcePath, renderPath, readmeTempPath, renderAbsPath) {
+    constructor(codeRegExp, code2title, sourcePath, renderPath, readmeTempPath, renderAbsPath, homePath) {
         this.#codeRegExp = codeRegExp;
         this.#code2title = code2title;
         this.#sourcePath = sourcePath;
         this.#renderPath = renderPath;
         this.#readmeTempPath = readmeTempPath;
         this.#renderAbsPath = renderAbsPath;
+        this.#homePath = homePath;
 
         fs.access(this.#sourcePath, (err) => { if (err !== null) throw err });
         fs.access(this.#renderPath, (err) => { if (err !== null) throw err });
@@ -81,6 +83,9 @@ export class FileManager {
         return new ReadMeStruct(text, chapters, this.#renderAbsPath);
     }
 
+    writeReadMe(text) {
+        fs.writeFileSync(`${this.#homePath}/ReadMe.md`, text);
+    }
 }
 
 const nameRegExp = new RegExp('^[^.]*', 'ud'); // match name without extension

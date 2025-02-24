@@ -66,6 +66,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git add pdfs\*.pdf
+          git add ReadMe.md
           if [ -z "$(git status --porcelain)" ]; then
             echo "PUSH=false" >> $GITHUB_ENV
           else
