@@ -2,20 +2,32 @@ import { contentManager } from './setContentManager.mjs';
 
 
 async function main() {
+    let error = undefined;
 
-    (async () => { })()
-        .finally(async () => {
-            await contentManager.downloadTgphContentInfo();
-            await contentManager.downloadSources();
-            await contentManager.upload();
-        })
-        .finally(async () => {
-            await contentManager.setPdf();
-        })
-        .finally(async () => {
-            await contentManager.setReadMe();
-        })
-        ;
+    try {
+        await contentManager.downloadTgphContentInfo();
+        await contentManager.downloadSources();
+        await contentManager.upload();
+    } catch (err) {
+        console.log(err);
+        error = err;
+    }
+
+    try {
+        await contentManager.setPdf();
+    } catch (err) {
+        console.log(err);
+        error = err;
+    }
+
+    try {
+        await contentManager.setReadMe();
+    } catch (err) {
+        console.log(err);
+        error = err;
+    }
+
+    if (error !== undefined) throw error;
 }
 
 main();
