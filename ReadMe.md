@@ -2,7 +2,7 @@
 
 | № | название | telegraph | файл |
 |:-:|:-------- |:- |:-:|
-| 9 | Солнцестояние глава 9 | [undefined](undefined) | [pdfs/1_09 Солнцестояние глава 9.pdf](pdfs/1_09%20Солнцестояние%20глава%209.pdf) |
+| 9 | Солнцестояние глава 9 | [https://telegra.ph/Solncestoyanie-glava-9-03-24](https://telegra.ph/Solncestoyanie-glava-9-03-24) | [pdfs/1_09 Солнцестояние глава 9.pdf](pdfs/1_09%20Солнцестояние%20глава%209.pdf) |
 | 8 | Солнцестояние глава 8 | [https://telegra.ph/Solncestoyanie-glava-8-03-07](https://telegra.ph/Solncestoyanie-glava-8-03-07) | [pdfs/1_08 Солнцестояние глава 8.pdf](pdfs/1_08%20Солнцестояние%20глава%208.pdf) |
 | 7 | Солнцестояние глава 7 | [https://telegra.ph/Solncestoyanie-glava-7-03-02](https://telegra.ph/Solncestoyanie-glava-7-03-02) | [pdfs/1_07 Солнцестояние глава 7.pdf](pdfs/1_07%20Солнцестояние%20глава%207.pdf) |
 | 6 | Солнцестояние глава 6 | [https://telegra.ph/Solncestoyanie-glava-6-02-24](https://telegra.ph/Solncestoyanie-glava-6-02-24) | [pdfs/1_06 Солнцестояние глава 6.pdf](pdfs/1_06%20Солнцестояние%20глава%206.pdf) |
