@@ -54,7 +54,7 @@ export class ContentManager {
             // if (chapter.exists == false) internetAgent.createPage(this.#authToken, chapter, this.#decor);
 
             // internetAgent.uploadPage(this.#authToken, chapter, this.#decor);
-            setTimeout(internetAgent.uploadPage.bind(internetAgent), +index * +1001, this.#authToken, chapter, this.#decor);
+            setTimeout(internetAgent.uploadPage.bind(internetAgent), +index * +1501, this.#authToken, chapter, this.#decor);
         });
     }
 
