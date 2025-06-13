@@ -50,9 +50,11 @@ export class ContentManager {
         let internetAgent = new InernetAgent();
         // console.log(this.#chapters);
 
-        this.#chapters.forEach((chapter) => {
+        this.#chapters.forEach((chapter, index) => {
             // if (chapter.exists == false) internetAgent.createPage(this.#authToken, chapter, this.#decor);
-            internetAgent.uploadPage(this.#authToken, chapter, this.#decor);
+
+            // internetAgent.uploadPage(this.#authToken, chapter, this.#decor);
+            setTimeout(internetAgent.uploadPage.bind(internetAgent), +index * +1001, this.#authToken, chapter, this.#decor);
         });
     }
 
